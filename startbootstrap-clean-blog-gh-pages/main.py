@@ -18,12 +18,13 @@ def about():
 def contact():
     return render_template("contact.html")
 
-@app.route('/post/<id>')
+@app.route('/post/<int:id>')
 def post(id):
     curr_blog = None
     for blog in blog_data:
         if blog['id'] == id:
             curr_blog = blog
+
     return render_template('post.html',blog=curr_blog)
 
 
