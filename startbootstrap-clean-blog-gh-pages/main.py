@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import requests
+from flask import request
 
 
 app = Flask(__name__)
@@ -26,6 +27,14 @@ def post(id):
             curr_blog = blog
 
     return render_template('post.html',blog=curr_blog)
+
+@app.route('/form')
+def test_form():
+    return render_template('testing_form.html')
+
+@app.route('/login',methods=['GET', 'POST'])
+def login():
+        return f'<h1>Name: {request.form['username']}  Password: {request.form['password']}</h1>'
 
 
 if __name__ == '__main__':
