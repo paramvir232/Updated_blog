@@ -19,6 +19,7 @@ def about():
 def contact():
     return render_template("contact.html")
 
+
 @app.route('/post/<int:id>')
 def post(id):
     curr_blog = None
@@ -36,6 +37,9 @@ def test_form():
 def login():
         return f'<h1>Name: {request.form['username']}  Password: {request.form['password']}</h1>'
 
+@app.route('/form-entry',methods=['GET', 'POST'])
+def recieve_data():
+    return request.form['message']
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
