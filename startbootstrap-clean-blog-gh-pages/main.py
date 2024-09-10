@@ -15,9 +15,12 @@ def home_page():
 def about():
     return render_template("about.html")
 
-@app.route("/contact")
+@app.route("/contact",methods=['GET', 'POST'])
 def contact():
-    return render_template("contact.html")
+    if request.method == 'POST':
+        return request.form['message']
+    else:
+        return render_template("contact.html")
 
 
 @app.route('/post/<int:id>')
@@ -37,9 +40,7 @@ def test_form():
 def login():
         return f'<h1>Name: {request.form['username']}  Password: {request.form['password']}</h1>'
 
-@app.route('/form-entry',methods=['GET', 'POST'])
-def recieve_data():
-    return request.form['message']
+
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
